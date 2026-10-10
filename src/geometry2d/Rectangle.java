@@ -43,3 +43,4 @@ public class Rectangle implements Figure {
         return "Rectangle{width=" + width + ", height=" + height + "}";
     }
 }
+

@@ -12,3 +12,4 @@ public class InvalidFigureParameterException extends RuntimeException {
         super(message, prichina);
     }
 }
+

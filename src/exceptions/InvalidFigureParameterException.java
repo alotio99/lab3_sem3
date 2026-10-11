@@ -5,7 +5,7 @@ package exceptions;
 public class InvalidFigureParameterException extends RuntimeException {
 
     public InvalidFigureParameterException(String message) {
-        super(message); // вызывает конструктор родмтеля и передает ему аргумент
+        super(message); // вызывает конструктор родителя и передает ему аргумент
     }
 
     public InvalidFigureParameterException(String message, Throwable prichina) {

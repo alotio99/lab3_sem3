@@ -18,7 +18,7 @@ public class Cylinder implements Serializable {
         }
         if (!Double.isFinite(height) || height <= 0) {
             throw new InvalidFigureParameterException(
-                    "Высота должна быть положительным конечным числом: height= " + height);
+                    "Высота должна быть положительным числом: height= " + height);
         }
         this.base = base;
         this.height = height;

@@ -28,6 +28,10 @@ public class Cylinder {
         return height;
     }
 
+    public double volume() {
+        return base.area() * height;
+    }
+
     @Override
     public String toString() {
         return "Cylinder{base= " + base + ", height= " + height + "}";

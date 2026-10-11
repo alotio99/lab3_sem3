@@ -4,6 +4,8 @@ import exceptions.InvalidFigureParameterException;
 
 public class Circle implements Figure {
 
+    private static final long serialVersionUID = 1L; // номер версии сериализуемого класса
+
     private final double radius;
 
     public Circle(double radius) {

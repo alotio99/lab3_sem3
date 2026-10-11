@@ -3,7 +3,11 @@ package geometry3d;
 import exceptions.InvalidFigureParameterException;
 import geometry2d.Figure;
 
-public class Cylinder {
+import java.io.Serializable;
+
+public class Cylinder implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private final Figure base;
     private final double height;

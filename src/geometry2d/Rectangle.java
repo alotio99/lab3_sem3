@@ -4,6 +4,8 @@ import exceptions.InvalidFigureParameterException;
 
 public class Rectangle implements Figure {
 
+    private static final long serialVersionUID = 1L;
+
     private final double width;
     private final double height;
 

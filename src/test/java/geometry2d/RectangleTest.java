@@ -8,6 +8,7 @@ import exceptions.InvalidFigureParameterException;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class RectangleTest {
 
@@ -83,5 +84,23 @@ class RectangleTest {
     @Test
     void constructorRejectsNegativeInfinityHeight() {
         assertThrows(InvalidFigureParameterException.class, () -> new Rectangle(4.0, Double.NEGATIVE_INFINITY));
+    }
+
+    // Тесты геттеров
+    @Test
+    void getWidthAndHeightReturnConstructorValues() {
+        Rectangle rectangle = new Rectangle(3.0, 4.5);
+        assertEquals(3.0, rectangle.getWidth(), 1e-9);
+        assertEquals(4.5, rectangle.getHeight(), 1e-9);
+    }
+
+    // Тест toString()
+    @Test
+    void toStringContainsTypeAndSideValues() {
+        Rectangle rectangle = new Rectangle(3.0, 4.0);
+        String s = rectangle.toString();
+        assertTrue(s.contains("Rectangle"));
+        assertTrue(s.contains("3.0"));
+        assertTrue(s.contains("4.0"));
     }
 }

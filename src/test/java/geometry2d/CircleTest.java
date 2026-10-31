@@ -8,6 +8,7 @@ import exceptions.InvalidFigureParameterException;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CircleTest {
 
@@ -72,5 +73,21 @@ class CircleTest {
     @Test
     void constructorRejectsNegativeInfinity() {
         assertThrows(InvalidFigureParameterException.class, () -> new Circle(Double.NEGATIVE_INFINITY));
+    }
+
+    // Тесты геттера
+    @Test
+    void getRadiusReturnsConstructorValue() {
+        Circle circle = new Circle(2.5);
+        assertEquals(2.5, circle.getRadius(), 1e-9);
+    }
+
+    // Тест toString()
+    @Test
+    void toStringContainsTypeAndRadius() {
+        Circle circle = new Circle(2.5);
+        String s = circle.toString();
+        assertTrue(s.contains("Circle"));
+        assertTrue(s.contains("2.5"));
     }
 }

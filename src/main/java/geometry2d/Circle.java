@@ -22,7 +22,7 @@ public class Circle implements Figure {
 
     @Override
     public double area() {
-        return Math.PI * radius;
+        return Math.PI * radius * radius;
     }
 
     @Override

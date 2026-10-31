@@ -4,6 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import exceptions.InvalidFigureParameterException;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 class RectangleTest {
 
     private static final double EPSILON = 1e-9; // Погрешность для double
@@ -44,5 +49,39 @@ class RectangleTest {
     void perimeterOfTwoBySevenRectangleIsEighteen() {
         Rectangle rectangle = new Rectangle(2.0, 7.0);
         assertEquals(18.0, rectangle.perimeter(), EPSILON);
+    }
+
+    // Негативные тесты (проверка на ошибки)
+
+    @ParameterizedTest
+    @ValueSource(doubles = {0.0, -1.0, -100.5}) // Запускает 3 раза с этими данными
+    void constructorRejectsZeroAndNegativeWidth(double width) {
+        assertThrows(InvalidFigureParameterException.class, () -> new Rectangle(width, 4.0));
+    }
+
+    @ParameterizedTest
+    @ValueSource(doubles = {0.0, -1.0, -100.5})
+    void constructorRejectsZeroAndNegativeHeight(double height) {
+        assertThrows(InvalidFigureParameterException.class, () -> new Rectangle(4.0, height));
+    }
+
+    @Test
+    void constructorRejectsNaNWidth() {
+        assertThrows(InvalidFigureParameterException.class, () -> new Rectangle(Double.NaN, 4.0));
+    }
+
+    @Test
+    void constructorRejectsNaNHeight() {
+        assertThrows(InvalidFigureParameterException.class, () -> new Rectangle(4.0, Double.NaN));
+    }
+
+    @Test
+    void constructorRejectsPositiveInfinityWidth() {
+        assertThrows(InvalidFigureParameterException.class, () -> new Rectangle(Double.POSITIVE_INFINITY, 4.0));
+    }
+
+    @Test
+    void constructorRejectsNegativeInfinityHeight() {
+        assertThrows(InvalidFigureParameterException.class, () -> new Rectangle(4.0, Double.NEGATIVE_INFINITY));
     }
 }

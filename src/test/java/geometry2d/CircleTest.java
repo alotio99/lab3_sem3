@@ -4,6 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import exceptions.InvalidFigureParameterException;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 class CircleTest {
 
     private static final double EPSILON = 1e-9; // Погрешность для double
@@ -44,5 +49,28 @@ class CircleTest {
     void perimeterOfRadiusHalfIsPi() {
         Circle circle = new Circle(0.5);
         assertEquals(Math.PI, circle.perimeter(), EPSILON);
+    }
+
+    // Негативные тесты (проверка на ошибки)
+
+    @ParameterizedTest
+    @ValueSource(doubles = {0.0, -1.0, -100.5}) // Запускает 3 раза с этими данными
+    void constructorRejectsZeroAndNegativeRadius(double radius) {
+        assertThrows(InvalidFigureParameterException.class, () -> new Circle(radius));
+    }
+
+    @Test
+    void constructorRejectsNaN() {
+        assertThrows(InvalidFigureParameterException.class, () -> new Circle(Double.NaN));
+    }
+
+    @Test
+    void constructorRejectsPositiveInfinity() {
+        assertThrows(InvalidFigureParameterException.class, () -> new Circle(Double.POSITIVE_INFINITY));
+    }
+
+    @Test
+    void constructorRejectsNegativeInfinity() {
+        assertThrows(InvalidFigureParameterException.class, () -> new Circle(Double.NEGATIVE_INFINITY));
     }
 }
